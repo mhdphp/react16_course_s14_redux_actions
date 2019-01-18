@@ -1,6 +1,0 @@
-/* this is global css file */
-
-.Person, .Student {
-  box-shadow: 1px 2px 1px 2px #ccc;
-  border-radius: 10px;
-}
