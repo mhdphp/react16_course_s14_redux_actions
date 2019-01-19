@@ -36,6 +36,12 @@ const rootReducer = (state = initialState, action ) => {
 const store = createStore(rootReducer);
 console.log('store.getState(): ', store.getState());
 
+// Subscription - it's a trigger that run a function (in our case console.log(...))
+// when the state is changing
+store.subscribe(() => {
+  console.log('[Subscription]', store.getState());
+});
+
 // Dispatching Action
 // type is important to be one key of the JS object as parameter for dispatch
 // the value of type is by convention with capital letters
@@ -45,5 +51,3 @@ store.dispatch({type: 'INC_COUNTER'});
 store.dispatch({type: 'ADD_COUNTER', value: 10});
 
 console.log('after store.dispatch(): store.getState()', store.getState());
-
-// Subscription
