@@ -23,6 +23,9 @@ class Counter extends Component {
             case 'sub':
                 this.setState( ( prevState ) => { return { counter: prevState.counter - value } } )
                 break;
+            default:
+                this.setState( ( prevState ) => { return { counter: prevState.counter + 1 } } )
+                break;
         }
     }
 
@@ -30,7 +33,7 @@ class Counter extends Component {
         return (
             <div>
                 <CounterOutput value={this.props.myCounter} />
-                <CounterControl label="Increment" clicked={() => this.counterChangedHandler( 'inc' )} />
+                <CounterControl label="Increment" clicked={this.props.onIncrementCounter} />
                 <CounterControl label="Decrement" clicked={() => this.counterChangedHandler( 'dec' )}  />
                 <CounterControl label="Add 5" clicked={() => this.counterChangedHandler( 'add', 5 )}  />
                 <CounterControl label="Subtract 5" clicked={() => this.counterChangedHandler( 'sub', 5 )}  />
@@ -45,7 +48,15 @@ class Counter extends Component {
 const mapStateToProps = state => {
     return {
         myCounter: state.counter
-    }
-}
+    };
+};
 
-export default connect(mapStateToProps) (Counter);
+// same as above for subscription - modifying the state in reducer.js
+// this will be accessed in Counter component as this.props.onIncrementCounter
+const mapDispatchToProps = dispatch => {
+    return {
+        onIncrementCounter: () => dispatch({type: 'INCREMENT'})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps) (Counter);
