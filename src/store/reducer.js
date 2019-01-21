@@ -1,6 +1,6 @@
 // reducer is a function
 const initialState = {
-  counter: 0
+  counter: 100
 }
 
 const reducer = (state = initialState, action) =>{
