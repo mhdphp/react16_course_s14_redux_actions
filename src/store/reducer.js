@@ -5,11 +5,25 @@ const initialState = {
 
 const reducer = (state = initialState, action) =>{
   if(action.type === 'INCREMENT'){
-    console.log(`state before update: ${state.counter}`); // for testing purposes
     return {
       counter: state.counter + 1
     }
   }
+    if(action.type === 'DECREMENT'){
+      return {
+        counter: state.counter - 1
+      }
+    }
+    if(action.type === 'ADD'){
+      return {
+        counter: state.counter + 5
+      }
+    }
+    if(action.type === 'SUBSTRACT'){
+      return {
+        counter: state.counter - 5
+      }
+    }
   return state;
 };
 
